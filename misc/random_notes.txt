@@ -1,0 +1,12 @@
+Validation of pitchers:
+
+Validated 8/8
+
+zambrca01,020510
+zerbech01,030725
+youngja01,040522
+zambrvi01,040819
+wakefti01,060722
+zambrvi01,070510
+zambrca01,080621
+wakefti01,080812
