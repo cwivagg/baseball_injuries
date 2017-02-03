@@ -6,6 +6,20 @@ from datetime import date
 from time import strptime
 from unidecode import unidecode
 
+def getTemperature(pageRoot):
+    tempText = pageRoot.xpath('//div[@id="weather"]/text()')
+    if tempText:
+        preT = re.search(r'\d+', tempText[0])
+        if preT:
+            print preT.group()
+            return int(preT.group())
+        else:
+            print "No Temperature Text"
+            return -50
+    else:
+        print "No Weather Text"
+        return -50
+
 def processTable(tbl):
     datesList = []
     transList = []

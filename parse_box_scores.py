@@ -4,13 +4,13 @@ from os import listdir
 parser = etree.HTMLParser()
 
 from parser_functions import pitcherFullParse
-
+from parser_functions import getTemperature
 
 
 
 ### Part 0: Setting up Files and XML
 
-parsing = open("./parse_012017afternoon.csv",'w')
+parsing = open("./parse_012717afternoon.csv",'w')
 
 ii = 0
 tempList = []
@@ -27,12 +27,14 @@ for file in listdir('./parsed_box_scores'):
 
         tablesOnPage = root.xpath('//table[@class="sortable  stats_table"]')
         gameDate = file[3:11]
+        temperature = getTemperature(root)
 
         for i in range(2,4):
             try:
                 extractedData = pitcherFullParse(tablesOnPage[i])
                 ## pitcherFullParse returns a trailing newline.
-                extractedData = extractedData[0:-1] + ',' + gameDate + '\n'
+                extractedData = extractedData[0:-1] + ',' + gameDate + ',' \
+                    + str(temperature) + '\n'
                 parsing.write(extractedData) 
             except:
                 print file

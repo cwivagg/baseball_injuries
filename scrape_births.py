@@ -4,7 +4,7 @@ from lxml import etree
 from scraping_functions import player_record
 from scraping_functions import age_db_creator
 from scraping_functions import age_db_no_match
-from scraping_functions import get_player_hands
+from scraping_functions import fetchPlayerBirths
 
 parser = etree.HTMLParser()
 
@@ -12,7 +12,7 @@ prevWork = open('db_age2.csv', 'r')
 db = age_db_creator(prevWork)
 prevWork.close()
 fetchPlayersIndex = [9, 11]
-pA = open('db_age2', 'a')
+pA = open('db_age2.csv', 'a')
 
 for file in os.listdir('parsed_box_scores'):
 	if file[0] != '.':

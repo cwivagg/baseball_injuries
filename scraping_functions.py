@@ -1,6 +1,25 @@
 from urllib2 import urlopen
 from lxml import etree
 from unidecode import unidecode
+from time import sleep
+
+class player_record:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+def age_db_creator(f):
+    age_db = []
+    for line in f:
+        data_line = line.split(',')
+        p = player_record(data_line[0],data_line[1])
+    return age_db
+
+def age_db_no_match(db, name):
+    for player in db:
+        if player.name == name:
+            return False
+    return True
 
 def fetchPlayerName(s):
     s = 'http://www.baseball-reference.com/players/' + s[0] + '/' + s + '.shtml'
@@ -28,5 +47,5 @@ def fetchPlayerBirths(name):
 	except:
 		birthString = '0'
                 print "Failure on " + player_url	
-	time.sleep(3)
+	sleep(3)
 	return birthString
